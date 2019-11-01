@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		07589446236C357400B59A28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07589445236C357400B59A28 /* AppDelegate.swift */; };
 		07589448236C357400B59A28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07589447236C357400B59A28 /* SceneDelegate.swift */; };
-		0758944A236C357400B59A28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07589449236C357400B59A28 /* ViewController.swift */; };
 		0758944D236C357400B59A28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0758944B236C357400B59A28 /* Main.storyboard */; };
 		0758944F236C357700B59A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0758944E236C357700B59A28 /* Assets.xcassets */; };
 		07589452236C357700B59A28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07589450236C357700B59A28 /* LaunchScreen.storyboard */; };
@@ -20,7 +19,6 @@
 		07589442236C357400B59A28 /* RxMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07589445236C357400B59A28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07589447236C357400B59A28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		07589449236C357400B59A28 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0758944C236C357400B59A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0758944E236C357700B59A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07589451236C357700B59A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,15 +61,54 @@
 		07589444236C357400B59A28 /* RxMemo */ = {
 			isa = PBXGroup;
 			children = (
+				0758946B236C9C8900B59A28 /* Scene */,
+				0758946A236C9C7A00B59A28 /* Service */,
+				07589469236C9C6000B59A28 /* ViewModel */,
+				07589468236C9C5200B59A28 /* ViewController */,
 				07589445236C357400B59A28 /* AppDelegate.swift */,
+				07589467236C9C3700B59A28 /* Model */,
 				07589447236C357400B59A28 /* SceneDelegate.swift */,
-				07589449236C357400B59A28 /* ViewController.swift */,
-				0758944B236C357400B59A28 /* Main.storyboard */,
 				0758944E236C357700B59A28 /* Assets.xcassets */,
-				07589450236C357700B59A28 /* LaunchScreen.storyboard */,
 				07589453236C357700B59A28 /* Info.plist */,
 			);
 			path = RxMemo;
+			sourceTree = "<group>";
+		};
+		07589467236C9C3700B59A28 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		07589468236C9C5200B59A28 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0758944B236C357400B59A28 /* Main.storyboard */,
+				07589450236C357700B59A28 /* LaunchScreen.storyboard */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		07589469236C9C6000B59A28 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0758946A236C9C7A00B59A28 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0758946B236C9C8900B59A28 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		1FD67C4B79878B651243A442 /* Pods */ = {
@@ -80,7 +117,6 @@
 				619A284D9713FEC0AD57ADD7 /* Pods-RxMemo.debug.xcconfig */,
 				D37A1DB2A8631E6146E3C77F /* Pods-RxMemo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,7 +243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0758944A236C357400B59A28 /* ViewController.swift in Sources */,
 				07589446236C357400B59A28 /* AppDelegate.swift in Sources */,
 				07589448236C357400B59A28 /* SceneDelegate.swift in Sources */,
 			);
