@@ -8,8 +8,11 @@
 
 import UIKit
 
-class MemoListViewController: UIViewController {
-
+class MemoListViewController: UIViewController, ViewModelBinableType {
+ 
+    /// MARK: - Properties
+    var viewModel: MemoListViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +20,9 @@ class MemoListViewController: UIViewController {
     }
     
 
+    func bindViewModel() {
+
+    }
     /*
     // MARK: - Navigation
 

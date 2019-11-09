@@ -8,14 +8,18 @@
 
 import UIKit
 
-class MemoComposeViewController: UIViewController {
+class MemoComposeViewController: UIViewController, ViewModelBinableType {
 
+    var viewModel: MemoComposeViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    func bindViewModel() {
+        
+    }
 
     /*
     // MARK: - Navigation
