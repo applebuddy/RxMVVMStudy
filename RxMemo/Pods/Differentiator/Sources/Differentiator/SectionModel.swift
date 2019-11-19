@@ -18,34 +18,32 @@ public struct SectionModel<Section, ItemType> {
     }
 }
 
-extension SectionModel
-    : SectionModelType {
+extension SectionModel:
+    SectionModelType {
     public typealias Identity = Section
     public typealias Item = ItemType
-    
+
     public var identity: Section {
         return model
     }
 }
 
-extension SectionModel
-    : CustomStringConvertible {
-
+extension SectionModel:
+    CustomStringConvertible {
     public var description: String {
-        return "\(self.model) > \(items)"
+        return "\(model) > \(items)"
     }
 }
 
 extension SectionModel {
     public init(original: SectionModel<Section, Item>, items: [Item]) {
-        self.model = original.model
+        model = original.model
         self.items = items
     }
 }
 
-extension SectionModel
-    : Equatable where Section: Equatable, ItemType: Equatable {
-    
+extension SectionModel:
+    Equatable where Section: Equatable, ItemType: Equatable {
     public static func == (lhs: SectionModel, rhs: SectionModel) -> Bool {
         return lhs.model == rhs.model
             && lhs.items == rhs.items

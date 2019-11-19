@@ -16,11 +16,10 @@ public struct AnimatableSectionModel<Section: IdentifiableType, ItemType: Identi
         self.model = model
         self.items = items
     }
-    
 }
 
-extension AnimatableSectionModel
-    : AnimatableSectionModelType {
+extension AnimatableSectionModel:
+    AnimatableSectionModelType {
     public typealias Item = ItemType
     public typealias Identity = Section.Identity
 
@@ -29,28 +28,24 @@ extension AnimatableSectionModel
     }
 
     public init(original: AnimatableSectionModel, items: [Item]) {
-        self.model = original.model
+        model = original.model
         self.items = items
     }
-    
+
     public var hashValue: Int {
-        return self.model.identity.hashValue
+        return model.identity.hashValue
     }
 }
 
-
-extension AnimatableSectionModel
-    : CustomStringConvertible {
-
+extension AnimatableSectionModel:
+    CustomStringConvertible {
     public var description: String {
-        return "HashableSectionModel(model: \"\(self.model)\", items: \(items))"
+        return "HashableSectionModel(model: \"\(model)\", items: \(items))"
     }
-
 }
 
-extension AnimatableSectionModel
-    : Equatable where Section: Equatable {
-    
+extension AnimatableSectionModel:
+    Equatable where Section: Equatable {
     public static func == (lhs: AnimatableSectionModel, rhs: AnimatableSectionModel) -> Bool {
         return lhs.model == rhs.model
             && lhs.items == rhs.items

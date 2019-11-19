@@ -6,7 +6,7 @@ public extension Action {
     /// only underlying error from `ActionError`
     var underlyingError: Observable<Error> {
         return errors.flatMap { actionError -> Observable<Error> in
-            guard case .underlyingError(let error) = actionError else {
+            guard case let .underlyingError(error) = actionError else {
                 return Observable.empty()
             }
             return Observable.just(error)
@@ -29,6 +29,6 @@ public extension CompletableAction {
             .flatMap { execution in
                 execution.flatMap { _ in Observable.empty() }
                     .concat(Observable.just(()))
-        }
+            }
     }
 }

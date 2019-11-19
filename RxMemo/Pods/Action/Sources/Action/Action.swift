@@ -1,6 +1,6 @@
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 /// Typealias for compatibility with UIButton's rx.action property.
 public typealias CocoaAction = Action<Void, Void>
@@ -14,11 +14,11 @@ public enum ActionError: Error {
 }
 
 /**
-Represents a value that accepts a workFactory which takes some Observable<Input> as its input
-and produces an Observable<Element> as its output.
+ Represents a value that accepts a workFactory which takes some Observable<Input> as its input
+ and produces an Observable<Element> as its output.
 
-When this excuted via execute() or inputs subject, it passes its parameter to this closure and subscribes to the work.
-*/
+ When this excuted via execute() or inputs subject, it passes its parameter to this closure and subscribes to the work.
+ */
 public final class Action<Input, Element> {
     public typealias WorkFactory = (Input) -> Observable<Element>
 
@@ -36,7 +36,7 @@ public final class Action<Input, Element> {
     /// Delivered on whatever scheduler they were sent from.
     public let elements: Observable<Element>
 
-    /// Whether or not we're currently executing. 
+    /// Whether or not we're currently executing.
     public let executing: Observable<Bool>
 
     /// Observables returned by the workFactory.
@@ -62,9 +62,9 @@ public final class Action<Input, Element> {
 
     public init(
         enabledIf: Observable<Bool> = Observable.just(true),
-        workFactory: @escaping WorkFactory) {
-
-        self._enabledIf = enabledIf
+        workFactory: @escaping WorkFactory
+    ) {
+        _enabledIf = enabledIf
         self.workFactory = workFactory
 
         let enabledSubject = BehaviorSubject<Bool>(value: false)
@@ -75,7 +75,7 @@ public final class Action<Input, Element> {
 
         let inputsSubject = PublishSubject<Input>()
         inputs = AnyObserver { event in
-            guard case .next(let value) = event else { return }
+            guard case let .next(value) = event else { return }
             inputsSubject.onNext(value)
         }
 
@@ -84,8 +84,8 @@ public final class Action<Input, Element> {
             .flatMap { input, enabled -> Observable<Observable<Element>> in
                 if enabled {
                     return Observable.of(workFactory(input)
-                                             .do(onError: { errorsSubject.onNext(.underlyingError($0)) })
-                                             .share(replay: 1, scope: .forever))
+                        .do(onError: { errorsSubject.onNext(.underlyingError($0)) })
+                        .share(replay: 1, scope: .forever))
                 } else {
                     errorsSubject.onNext(.notEnabled)
                     return Observable.empty()
@@ -97,17 +97,17 @@ public final class Action<Input, Element> {
             .flatMap { $0.catchError { _ in Observable.empty() } }
 
         executing = executionObservables.flatMap {
-                execution -> Observable<Bool> in
-                let execution = execution
-                    .flatMap { _ in Observable<Bool>.empty() }
-                    .catchError { _ in Observable.empty() }
+            execution -> Observable<Bool> in
+            let execution = execution
+                .flatMap { _ in Observable<Bool>.empty() }
+                .catchError { _ in Observable.empty() }
 
-                return Observable.concat([Observable.just(true),
-                                          execution,
-                                          Observable.just(false)])
-            }
-            .startWith(false)
-            .share(replay: 1, scope: .forever)
+            return Observable.concat([Observable.just(true),
+                                      execution,
+                                      Observable.just(false)])
+        }
+        .startWith(false)
+        .share(replay: 1, scope: .forever)
 
         Observable
             .combineLatest(executing, enabledIf) { !$0 && $1 }
@@ -121,20 +121,20 @@ public final class Action<Input, Element> {
             inputs.onNext(value)
         }
 
-		let subject = ReplaySubject<Element>.createUnbounded()
+        let subject = ReplaySubject<Element>.createUnbounded()
 
-		let work = executionObservables
-			.map { $0.catchError { throw ActionError.underlyingError($0) } }
+        let work = executionObservables
+            .map { $0.catchError { throw ActionError.underlyingError($0) } }
 
-		let error = errors
-			.map { Observable<Element>.error($0) }
+        let error = errors
+            .map { Observable<Element>.error($0) }
 
-		work.amb(error)
-			.take(1)
-			.flatMap { $0 }
-			.subscribe(subject)
-			.disposed(by: disposeBag)
+        work.amb(error)
+            .take(1)
+            .flatMap { $0 }
+            .subscribe(subject)
+            .disposed(by: disposeBag)
 
-		return subject.asObservable()
+        return subject.asObservable()
     }
 }

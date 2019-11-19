@@ -12,21 +12,19 @@ public struct IdentifiableValue<Value: Hashable> {
     public let value: Value
 }
 
-extension IdentifiableValue
-    : IdentifiableType {
-
+extension IdentifiableValue:
+    IdentifiableType {
     public typealias Identity = Value
 
-    public var identity : Identity {
+    public var identity: Identity {
         return value
     }
 }
 
-extension IdentifiableValue
-    : Equatable
-    , CustomStringConvertible
-    , CustomDebugStringConvertible {
-
+extension IdentifiableValue:
+    Equatable,
+    CustomStringConvertible,
+    CustomDebugStringConvertible {
     public var description: String {
         return "\(value)"
     }

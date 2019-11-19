@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum DifferentiatorError : Error {
+enum DifferentiatorError: Error {
     case unwrappingOptional
     case preconditionFailed(message: String)
 }
 
-func precondition(_ condition: Bool, _ message: @autoclosure() -> String) throws -> () {
+func precondition(_ condition: Bool, _ message: @autoclosure () -> String) throws {
     if condition {
         return
     }

@@ -7,29 +7,28 @@
 //
 
 #if os(iOS) || os(tvOS)
-import Foundation
-import UIKit
-#if !RX_NO_MODULE
-import RxSwift
-import RxCocoa
-#endif
-import Differentiator
+    import Foundation
+    import UIKit
+    #if !RX_NO_MODULE
+        import RxCocoa
+        import RxSwift
+    #endif
+    import Differentiator
 
-open class RxCollectionViewSectionedReloadDataSource<Section: SectionModelType>
-    : CollectionViewSectionedDataSource<Section>
-    , RxCollectionViewDataSourceType {
-    
-    public typealias Element = [Section]
+    open class RxCollectionViewSectionedReloadDataSource<Section: SectionModelType>:
+        CollectionViewSectionedDataSource<Section>,
+        RxCollectionViewDataSourceType {
+        public typealias Element = [Section]
 
-    open func collectionView(_ collectionView: UICollectionView, observedEvent: Event<Element>) {
-        Binder(self) { dataSource, element in
-            #if DEBUG
-                dataSource._dataSourceBound = true
-            #endif
-            dataSource.setSections(element)
-            collectionView.reloadData()
-            collectionView.collectionViewLayout.invalidateLayout()
-        }.on(observedEvent)
+        open func collectionView(_ collectionView: UICollectionView, observedEvent: Event<Element>) {
+            Binder(self) { dataSource, element in
+                #if DEBUG
+                    dataSource._dataSourceBound = true
+                #endif
+                dataSource.setSections(element)
+                collectionView.reloadData()
+                collectionView.collectionViewLayout.invalidateLayout()
+            }.on(observedEvent)
+        }
     }
-}
 #endif

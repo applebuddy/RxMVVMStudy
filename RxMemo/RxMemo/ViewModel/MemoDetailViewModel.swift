@@ -9,6 +9,4 @@
 import Foundation
 
 /// 메모보기 화면에서 사용하는 뷰 모델
-class MemoDetailViewModel {
-    
-}
+class MemoDetailViewModel {}
