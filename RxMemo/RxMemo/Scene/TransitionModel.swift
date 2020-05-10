@@ -8,14 +8,14 @@
 
 import Foundation
 
-/// 전환 스타일 정의
+/// 뷰 전환 스타일 정의
 enum TransitionStyle {
     case root
     case push
     case modal
 }
 
-// 전환 에러 정의
+// 뷰 전환 에러 정의
 enum TransitionError: Error {
     case navigationControllerMissing
     case cannotPop

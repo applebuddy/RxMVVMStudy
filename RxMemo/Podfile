@@ -6,6 +6,8 @@ target 'RxMemo' do
   use_frameworks!
 
   # Pods for RxMemo
+  # RxSwift, RxCocoa 이외 라이브러리에 대해서는 RxSwift Commulity 챕터 참고
+	
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Action'
