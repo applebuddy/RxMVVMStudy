@@ -16,6 +16,7 @@ struct Memo: Equatable {
     init(content: String, insertDate: Date = Date()) {
         self.content = content
         self.insertDate = insertDate
+
         // insertDate의 2001/1/1 UTC 시간 기준, TimeInterval 값을 identity에 넣음
         identity = "\(insertDate.timeIntervalSinceReferenceDate)"
     }
