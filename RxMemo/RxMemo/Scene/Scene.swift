@@ -23,7 +23,7 @@ extension Scene {
 
         switch self {
         case let .list(viewModel):
-            guard let nav = storyboard.instantiateViewController(withIdentifier: "ListNav") as? UINavigationController else {
+            guard let nav = storyboard.instantiateViewController(withIdentifier: "ListNavigationController") as? UINavigationController else {
                 fatalError()
             }
 
@@ -32,6 +32,7 @@ extension Scene {
             }
 
             // 뷰 모델을 네비컨트롤러 rootViewController에 binding하고, 리턴할때는 navigationController를 리턴해야 한다.
+            // 5-15) 연관 값에 맞는 viewModel을 viewController가 binding 합니다.
             listVC.bind(viewModel: viewModel)
             return nav
         case let .detail(viewModel):

@@ -30,6 +30,7 @@ class SceneCoordinator: SceneCoordinatorType {
         let target = scene.instantiate()
         switch style {
         case .root:
+            // 5-16) .root를 선택하면 해당 viewController가 window의 rootViewController로 지정되고, completed 이벤트를 전달합니다.
             currentVC = target
             window.rootViewController = target
             subject.onCompleted()

@@ -8,10 +8,30 @@
 
 import UIKit
 
+// 5-14) Rx 구현을 하면, Cocoa구현에 비교하면 초기 셋팅이 좀더 복잡할 수 있지만, 앱 요소들 간의 의존성이 비교적 느슨해지고, 이후 추가 기능을 구현 및 변경하는 것이 훨씬 편리해집니다.
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // 5-14) 앱이 실행되면 아래에서 메모리 저장소 및 Scene코디네이터가 생성됩니다.
+        let storage = MemoryStorage()
+        let coordinator = SceneCoordinator(window: window!)
+
+        // 5-12) Scene 열거형에 선언되어있는 list Scene을 선언해보겠습니다.
+        // 5-14:50) 위의 storage, coordinator에 대한 의존성은 listViewModel에 두개의 인스턴스로서 주입되면서 활용됩니다.
+        // listViewModel은 두개의 인스턴스를 주입하면서 생성됩니다.
+        let listViewModel = MemoListViewModel(title: "나의 메모",
+                                              sceneCoordinator: coordinator,
+                                              storage: storage)
+
+        // 새로운 Scene을 생성하고, 연관값으로 viewModel을 저장합니다.
+        let listScene = Scene.list(listViewModel)
+
+        // transition 타입을 .root로 전달합니다.
+        // transition 메서드 내에서 실제 전달할 Scene을 생성합니다.
+        coordinator.transition(to: listScene, using: .root, animated: false)
+
         return true
     }
 
