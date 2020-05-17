@@ -15,15 +15,39 @@
                     <view key="view" contentMode="scaleToFill" id="XQI-kD-pmp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G9b-so-bl5">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="G9b-so-bl5" firstAttribute="top" secondItem="FXQ-W6-MwJ" secondAttribute="top" id="YN6-nJ-jIh"/>
+                            <constraint firstItem="FXQ-W6-MwJ" firstAttribute="bottom" secondItem="G9b-so-bl5" secondAttribute="bottom" id="bmq-NR-X34"/>
+                            <constraint firstItem="G9b-so-bl5" firstAttribute="leading" secondItem="FXQ-W6-MwJ" secondAttribute="leading" id="tyO-Sj-lAK"/>
+                            <constraint firstItem="FXQ-W6-MwJ" firstAttribute="trailing" secondItem="G9b-so-bl5" secondAttribute="trailing" id="yM3-jV-I34"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="FXQ-W6-MwJ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="새 메모" id="VYg-qP-QZ9"/>
+                    <navigationItem key="navigationItem" title="새 메모" id="VYg-qP-QZ9">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sxg-Xi-pa0"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LAz-lR-puV"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="sxg-Xi-pa0" id="yFT-hp-V88"/>
+                        <outlet property="contentTextView" destination="G9b-so-bl5" id="3xz-d0-ACm"/>
+                        <outlet property="saveButton" destination="LAz-lR-puV" id="87l-YP-KLA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSP-Zx-E7i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1965" y="130"/>
+            <point key="canvasLocation" x="1963.7681159420292" y="129.91071428571428"/>
         </scene>
         <!--메모 목록-->
         <scene sceneID="qCQ-Uk-K9E">
