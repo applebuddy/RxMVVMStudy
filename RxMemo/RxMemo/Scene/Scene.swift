@@ -44,7 +44,7 @@ extension Scene {
             return detailVC
         case let .compose(viewModel):
             // 네비게이션 컨트롤러에 Embeded 되어있으므로 이를 고려한다.
-            guard let nav = storyboard.instantiateViewController(withIdentifier: "ComposeNav") as? UINavigationController else {
+            guard let nav = storyboard.instantiateViewController(withIdentifier: "ComposeNavigationController") as? UINavigationController else {
                 fatalError()
             }
 

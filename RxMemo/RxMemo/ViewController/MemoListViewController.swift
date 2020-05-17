@@ -53,5 +53,8 @@ class MemoListViewController: UIViewController, ViewModelBinableType {
                 cell.textLabel?.text = memo.content
             }
             .disposed(by: rx.disposeBag)
+
+        // 06-18) 마지막으로 목록화면으로 가서 + 버튼과 액션을 바인딩 합니다. add 버튼이죠. 이후 메모를 저장하면 저장된 메모가 추가됩니다. E.
+        addButton.rx.action = viewModel.makeCreateAction()
     }
 }

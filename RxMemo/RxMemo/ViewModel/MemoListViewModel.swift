@@ -6,6 +6,7 @@
 //  Copyright © 2019 MinKyeongTae. All rights reserved.
 //
 
+import Action
 import Foundation
 import RxCocoa
 import RxSwift
@@ -17,5 +18,34 @@ class MemoListViewModel: CommonViewModel {
     // memoList는 메모배열을 방출해야 합니다.
     var memoList: Observable<[Memo]> {
         return storage.memoList()
+    }
+
+    func performUpdate(memo: Memo) -> Action<String, Void> {
+        return Action { input in
+            self.storage.update(memo: memo, content: input).map { _ in } // .map { _ in } 을 추가하면 Observable<Void> 형으로 반환할 수 있습니다.
+        }
+    }
+
+    // 06_16) 이어서 cancelAction을 리턴하는 메서드를 구현하겠습니다.
+    func performCancel(memo: Memo) -> CocoaAction {
+        return Action {
+            // 여기서는 생성된 메모를 삭제하겠습니다. createMemo를 호출하면 메모가 생성되는데, 이를 삭제하지 않으면 불필요한 메모가 저장될 수 있습니다. createMemo를 통해 내용 없는 메모를 생성, 저장이 되면 입력된 메모로 업데이트하는 방식입니다.
+            self.storage.delete(memo: memo).map { _ in }
+        }
+    }
+
+    func makeCreateAction() -> CocoaAction {
+        return CocoaAction { _ in
+            // 6-13) 이렇게 createMemo를 호출하면 새로운 메모가 생성되고, 이 메모를 방촐하는 옵저버블이 반환됩니다.
+            self.storage.createMemo(content: "") // 이어서 flatMap 연산자를 호출하고 클로저에서 화면전환을 처리합니다.
+                .flatMap { memo -> Observable<Void> in
+                    // 여기에서는 먼저 뷰 모델을 만들어야 합니다.
+                    let composeViewModel = MemoComposeViewModel(title: "새 메모", sceneCoordinator: self.sceneCoordinator, storage: self.storage, saveAction: self.performUpdate(memo: memo), cancelAction: self.performCancel(memo: memo))
+
+                    // 이어서 composeScene을 생성하고 연관값으로 viewModel을 저장하겠습니다.
+                    let composeScene = Scene.compose(composeViewModel)
+                    return self.sceneCoordinator.transition(to: composeScene, using: .modal, animated: true).asObservable().map { _ in }
+                }
+        }
     }
 }
