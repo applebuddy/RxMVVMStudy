@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "28C02E3B-EFCB-43FD-9668-0509F9F051CD"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C0468E6-1DBB-4D78-BD02-ADF302FA73C8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RxMemo/Scene/SceneCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "close(animated:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3C0468E6-1DBB-4D78-BD02-ADF302FA73C8 - 9b80088cc2aca4ba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RxMemo.SceneCoordinator.close(animated: Swift.Bool) -&gt; RxSwift.PrimitiveSequence&lt;RxSwift.CompletableTrait, Swift.Never&gt;"
+                  moduleName = "RxMemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/applebuddy/Documents/Educations/RxMVVMStudy/RxMemo/RxMemo/Scene/SceneCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "3C0468E6-1DBB-4D78-BD02-ADF302FA73C8 - 55fbd1133692f771"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((RxSwift.CompletableEvent) -&gt; ()) -&gt; RxSwift.Disposable in RxMemo.SceneCoordinator.close(animated: Swift.Bool) -&gt; RxSwift.PrimitiveSequence&lt;RxSwift.CompletableTrait, Swift.Never&gt;"
+                  moduleName = "RxMemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/applebuddy/Documents/Educations/RxMVVMStudy/RxMemo/RxMemo/Scene/SceneCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "238">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
