@@ -46,6 +46,9 @@ class MemoDetailViewController: UIViewController, ViewModelBinableType {
             }
             .disposed(by: rx.disposeBag)
 
+        editButton.rx.action = viewModel.makeEditAction()
+        // 09-05) 편집직후에 메모보기에 편집내용이 적용되지 않는 문제가 발생했습니다.
+        // - 지금부터 해당 문제를 해결해보도록 하겠습니다.
 //        var backButton = UIBarButtonItem(title: nil, style: .done, target: nil, action: nil)
 //        viewModel.title
 //            .drive(backButton.rx.title)

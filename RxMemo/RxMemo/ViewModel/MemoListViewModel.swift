@@ -20,6 +20,7 @@ class MemoListViewModel: CommonViewModel {
         return storage.memoList()
     }
 
+    // 09-00) MemoListViewModel을 보면, performUpdate, performCancel 메서드에서 쓰기에서 실행할 액션을 구현하고,
     func performUpdate(memo: Memo) -> Action<String, Void> {
         return Action { input in
             self.storage.update(memo: memo, content: input).map { _ in } // .map { _ in } 을 추가하면 Observable<Void> 형으로 반환할 수 있습니다.
@@ -39,6 +40,7 @@ class MemoListViewModel: CommonViewModel {
             // 6-13) 이렇게 createMemo를 호출하면 새로운 메모가 생성되고, 이 메모를 방촐하는 옵저버블이 반환됩니다.
             self.storage.createMemo(content: "") // 이어서 flatMap 연산자를 호출하고 클로저에서 화면전환을 처리합니다.
                 .flatMap { memo -> Observable<Void> in
+                    // 09-00) CocoaAction의 composeViewModel에서 memo가 생성될때 인자값으로 넘기고 있습니다.
                     // 여기에서는 먼저 뷰 모델을 만들어야 합니다.
                     let composeViewModel = MemoComposeViewModel(title: "새 메모", sceneCoordinator: self.sceneCoordinator, storage: self.storage, saveAction: self.performUpdate(memo: memo), cancelAction: self.performCancel(memo: memo))
 

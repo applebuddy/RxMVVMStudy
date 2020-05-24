@@ -45,4 +45,36 @@ class MemoDetailViewModel: CommonViewModel {
     lazy var popAction = CocoaAction { [unowned self] in
         self.sceneCoordinator.close(animated: true).asObservable().map { _ in }
     }
+
+    // 09-01
+    func performUpdate(memo: Memo) -> Action<String, Void> {
+        return Action { input in
+            // ~ 07
+            //            self.storage.update(memo: memo, content: input).map { _ in } // .map { _ in } 을 추가하면 Observable<Void> 형으로 반환할 수 있습니다.
+
+            // 09-07) 메모가 편집되었을 때 메모 내용이 갱신 될 수 있도록 해줍니다.
+            self.storage.update(memo: memo, content: input)
+                .subscribe(onNext: { updated in
+                    self.contents.onNext([
+                        updated.content,
+                        self.formatter.string(from: updated.insertDate),
+                    ])
+                })
+                .disposed(by: self.rx.disposeBag)
+
+            return Observable.empty()
+        }
+    }
+
+    func makeEditAction() -> CocoaAction {
+        return CocoaAction { _ in
+
+            // 09-02) 여기서 ComposeViewModel을 생성하겠습니다.
+            let composeViewModel = MemoComposeViewModel(title: "메모 편집", content: self.memo.content, sceneCoordinator: self.sceneCoordinator, storage: self.storage, saveAction: self.performUpdate(memo: self.memo))
+
+            let composeScene = Scene.compose(composeViewModel)
+            return self.sceneCoordinator.transition(to: composeScene, using: .modal, animated: true).asObservable().map { _ in }
+            // 09-03) 지금까지 구현한 액션을 편집버튼과 binding 하겠습니다.
+        }
+    }
 }
