@@ -37,7 +37,7 @@ extension Scene {
             return nav
         case let .detail(viewModel):
             // detail은 항상 네비게이션 스택에 푸시되므로 네비게이션 컨트롤러를 고려할 필요가 없다.
-            guard var detailVC = storyboard.instantiateViewController(withIdentifier: "DetailVC") as? MemoDetailViewController else {
+            guard var detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? MemoDetailViewController else {
                 fatalError()
             }
             detailVC.bind(viewModel: viewModel)

@@ -56,5 +56,16 @@ class MemoListViewController: UIViewController, ViewModelBinableType {
 
         // 06-18) 마지막으로 목록화면으로 가서 + 버튼과 액션을 바인딩 합니다. add 버튼이죠. 이후 메모를 저장하면 저장된 메모가 추가됩니다. E.
         addButton.rx.action = viewModel.makeCreateAction()
+
+        // 07-14) RxCocoa는 선택이벤트 처리에 사용하는 다양한 멤버를 extension으로 제공합니다.
+        // zip 연산자로 두 멤버가 리턴하는 Observable을 병합하겠습니다.
+        Observable.zip(listTableView.rx.modelSelected(Memo.self),
+                       listTableView.rx.itemSelected)
+            .do(onNext: { [unowned self] _, indexPath in
+                self.listTableView.deselectRow(at: indexPath, animated: true)
+            })
+            .map { $0.0 }
+            .bind(to: viewModel.detailAction.inputs)
+            .disposed(by: rx.disposeBag)
     }
 }

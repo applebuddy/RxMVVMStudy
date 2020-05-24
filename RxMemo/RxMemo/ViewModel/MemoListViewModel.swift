@@ -48,4 +48,17 @@ class MemoListViewModel: CommonViewModel {
                 }
         }
     }
+
+    // 07-12) 클로져 내부에서 self에 접근해야 하기 때문에 lazy var로 선언해서 사용합니다.
+    lazy var detailAction: Action<Memo, Void> = {
+        Action { memo in
+
+            let detailViewModel = MemoDetailViewModel(memo: memo, title: "메모 보기", sceneCoordinator: self.sceneCoordinator, storage: self.storage)
+
+            let detailScene = Scene.detail(detailViewModel)
+
+            return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().map { _ in }
+            // 07-14) 이후 MemoListViewController 로 가서 방금 구현한 Action을 binding 하겠습니다.
+        }
+    }()
 }
