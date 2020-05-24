@@ -6,6 +6,8 @@
 //  Copyright © 2019 MinKyeongTae. All rights reserved.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 class MemoDetailViewController: UIViewController, ViewModelBinableType {
@@ -16,6 +18,8 @@ class MemoDetailViewController: UIViewController, ViewModelBinableType {
     @IBOutlet var editButton: UIBarButtonItem!
     @IBOutlet var deleteButton: UIToolbar!
     @IBOutlet var shareButton: UIBarButtonItem!
+
+    // 09-08) shareButton을 클릭하면, 메모를 공유할 수 있도록 구현해보겠습니다.
 
     var viewModel: MemoDetailViewModel!
 
@@ -56,5 +60,17 @@ class MemoDetailViewController: UIViewController, ViewModelBinableType {
 //        backButton.rx.action = viewModel.popAction
 //        navigationItem.hidesBackButton = true
 //        navigationItem.leftBarButtonItem = backButton
+
+        // 09-09) throttle 연산자를 활용하면 DoubleTap을 막을 수 있습니다. throttle 연산자로 tap이벤트는 0.5초마다 하나씩만 전달됩니다.
+        // - 이로써 shareButton은 tap속성을 갖게 됩니다. 반면 편집버튼은 action을 사용하고 있습니다.
+        // ★ actiion방식과 rx.tap방식이 각각 어떤 장단점을 갖고 있는지 어떤 상황에서 활용하면 좋을 지 확인해보시기 바랍니다.
+        shareButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                guard let memo = self?.viewModel.memo.content else { return }
+                let vc = UIActivityViewController(activityItems: [memo], applicationActivities: nil)
+                self?.present(vc, animated: true, completion: nil)
+            })
+            .disposed(by: rx.disposeBag)
     }
 }
