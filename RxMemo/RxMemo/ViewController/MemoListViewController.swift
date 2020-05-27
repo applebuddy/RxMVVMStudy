@@ -67,5 +67,12 @@ class MemoListViewController: UIViewController, ViewModelBinableType {
             .map { $0.0 }
             .bind(to: viewModel.detailAction.inputs)
             .disposed(by: rx.disposeBag)
+
+        // 10-3) RxCocoa 제공 메서드를 활용해서 테이블뷰 삭제 동작이 가능하도록 합니다.
+        // - 아래와 같이 삭제와 관련된 controlEvent을 구독하게 되면 swipe 이벤트가 자동적으로 활성화 됩니다.
+        // - 이로써 swipe, 삭제버튼 클릭으로 메모를 삭제할 수 있게 됩니다. 현재 삭제과정은 애니메이션 없이 삭제처리가 됩니다. C.
+        listTableView.rx.modelDeleted(Memo.self)
+            .bind(to: viewModel.deleteAction.inputs)
+            .disposed(by: rx.disposeBag)
     }
 }

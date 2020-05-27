@@ -63,4 +63,14 @@ class MemoListViewModel: CommonViewModel {
             // 07-14) 이후 MemoListViewController 로 가서 방금 구현한 Action을 binding 하겠습니다.
         }
     }()
+
+    // 10-2) 여기에서 앞서 했던 detailAction과 동일한 방식으로 deleteAction 액션을 구현해보겠습니다.
+    lazy var deleteAction: Action<Memo, Swift.Never> = {
+        Action { memo in
+            // 여기서는 메모를 삭제만 하면 됩니다. 이전 뷰로 돌아갈 필요는 없습니다.
+            self.storage.delete(memo: memo).ignoreElements()
+        }
+    }()
+
+    // 10-3) 이번에는 listViewController로 가보겠습니다.
 }

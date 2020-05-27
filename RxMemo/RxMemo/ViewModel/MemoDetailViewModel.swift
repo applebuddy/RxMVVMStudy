@@ -77,4 +77,13 @@ class MemoDetailViewModel: CommonViewModel {
             // 09-03) 지금까지 구현한 액션을 편집버튼과 binding 하겠습니다.
         }
     }
+
+    // 10-0) 여기에 삭제버튼과 바인딩할 Action을 구성하겠습니다.
+    func makeDeleteAction() -> CocoaAction {
+        return Action { _ in
+            // 액션에서는 메모를 삭제한 뒤 이전 뷰로 돌아가겠습니다.
+            self.storage.delete(memo: self.memo)
+            return self.sceneCoordinator.close(animated: true).asObservable().map { _ in }
+        }
+    }
 }

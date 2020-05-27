@@ -16,7 +16,7 @@ class MemoDetailViewController: UIViewController, ViewModelBinableType {
     // 07-01) commit(05:36)
     @IBOutlet var listTableView: UITableView!
     @IBOutlet var editButton: UIBarButtonItem!
-    @IBOutlet var deleteButton: UIToolbar!
+    @IBOutlet var deleteButton: UIBarButtonItem!
     @IBOutlet var shareButton: UIBarButtonItem!
 
     // 09-08) shareButton을 클릭하면, 메모를 공유할 수 있도록 구현해보겠습니다.
@@ -51,19 +51,10 @@ class MemoDetailViewController: UIViewController, ViewModelBinableType {
             .disposed(by: rx.disposeBag)
 
         editButton.rx.action = viewModel.makeEditAction()
-        // 09-05) 편집직후에 메모보기에 편집내용이 적용되지 않는 문제가 발생했습니다.
-        // - 지금부터 해당 문제를 해결해보도록 하겠습니다.
-//        var backButton = UIBarButtonItem(title: nil, style: .done, target: nil, action: nil)
-//        viewModel.title
-//            .drive(backButton.rx.title)
-//            .disposed(by: rx.disposeBag)
-//        backButton.rx.action = viewModel.popAction
-//        navigationItem.hidesBackButton = true
-//        navigationItem.leftBarButtonItem = backButton
 
-        // 09-09) throttle 연산자를 활용하면 DoubleTap을 막을 수 있습니다. throttle 연산자로 tap이벤트는 0.5초마다 하나씩만 전달됩니다.
-        // - 이로써 shareButton은 tap속성을 갖게 됩니다. 반면 편집버튼은 action을 사용하고 있습니다.
-        // ★ actiion방식과 rx.tap방식이 각각 어떤 장단점을 갖고 있는지 어떤 상황에서 활용하면 좋을 지 확인해보시기 바랍니다.
+        // 10-1) deleteAction을 만들고, 버튼과 바인딩 함으로서 삭제 기능을 구현합니다.
+        deleteButton.rx.action = viewModel.makeDeleteAction()
+
         shareButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
