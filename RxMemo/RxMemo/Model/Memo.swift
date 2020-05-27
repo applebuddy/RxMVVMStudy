@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import RxDataSources
 
-struct Memo: Equatable {
+// 10-6) IdentifiableType에는 identiry 프로퍼티가 선언되어 있습니다. Hashable 프로토콜을 채용한 상태로 제한되어 있습니다. String은 Hashable 프로토콜을 충족하므로 그대로 두어도 됩니다.
+struct Memo: Equatable, IdentifiableType {
     var content: String
     var insertDate: Date
     var identity: String // 메모 구분에 사용하는 프로퍼티

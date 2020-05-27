@@ -14,6 +14,7 @@
 
 import NSObject_Rx
 import RxCocoa
+import RxDataSources
 import RxSwift
 import UIKit
 
@@ -47,11 +48,9 @@ class MemoListViewController: UIViewController, ViewModelBinableType {
         // - https://tech.olx.com/clean-architecture-and-mvvm-on-ios-c9d167d9f5b3
         // [웹사이트] Advanced iOS App Architecture
         // - https://store.raywenderlich.com/products/advanced-ios-app-architecture
+
         viewModel.memoList
-            .bind(to: listTableView.rx.items(cellIdentifier: "cell")) { _, memo, cell in
-                // 5-09) closure 내에서 cell 구성코드를 작성합니다.
-                cell.textLabel?.text = memo.content
-            }
+            .bind(to: listTableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: rx.disposeBag)
 
         // 06-18) 마지막으로 목록화면으로 가서 + 버튼과 액션을 바인딩 합니다. add 버튼이죠. 이후 메모를 저장하면 저장된 메모가 추가됩니다. E.
