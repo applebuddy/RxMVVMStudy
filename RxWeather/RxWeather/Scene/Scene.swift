@@ -23,6 +23,25 @@
 import UIKit
 
 enum Scene {
+<<<<<<< HEAD
+    case main(MainViewModel)
+}
+
+extension Scene {
+    func instantiate(from storyboard: String = "Main") -> UIViewController {
+        let storyboard = UIStoryboard(name: storyboard, bundle: nil)
+
+        switch self {
+        case let .main(viewModel):
+            guard var vc = storyboard.instantiateViewController(withIdentifier: "MainVC") as? ViewController else {
+                fatalError()
+            }
+
+            vc.bind(viewModel: viewModel)
+            return vc
+        }
+    }
+=======
    case main(MainViewModel)
 }
 
@@ -40,4 +59,5 @@ extension Scene {
          return vc
       }
    }
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

@@ -20,6 +20,13 @@
 //  THE SOFTWARE.
 //
 
+<<<<<<< HEAD
+import CoreLocation
+import Foundation
+import RxSwift
+
+protocol WeatherApiType {}
+=======
 import Foundation
 import CoreLocation
 import RxSwift
@@ -27,3 +34,4 @@ import RxSwift
 protocol WeatherApiType {
    
 }
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a

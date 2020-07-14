@@ -20,8 +20,16 @@
 //  THE SOFTWARE.
 //
 
+<<<<<<< HEAD
+import CoreLocation
+import Foundation
+import NSObject_Rx
+import RxCocoa
+import RxSwift
+=======
 import Foundation
 import RxSwift
 import RxCocoa
 import CoreLocation
 import NSObject_Rx
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a

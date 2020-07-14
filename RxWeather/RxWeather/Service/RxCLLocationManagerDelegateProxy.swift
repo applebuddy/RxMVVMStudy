@@ -20,7 +20,14 @@
 //  THE SOFTWARE.
 //
 
+<<<<<<< HEAD
+import CoreLocation
+import RxCocoa
+import RxSwift
+import UIKit
+=======
 import UIKit
 import CoreLocation
 import RxSwift
 import RxCocoa
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a

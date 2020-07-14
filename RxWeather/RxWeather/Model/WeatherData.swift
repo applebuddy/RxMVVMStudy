@@ -25,6 +25,31 @@ import RxCocoa
 import RxDataSources
 
 struct WeatherData: WeatherDataType, Equatable {
+<<<<<<< HEAD
+    let date: Date?
+    let weatherCode: String
+    let weatherDescription: String
+    let temperature: Double
+    let maxTemperature: Double?
+    let minTemperature: Double?
+}
+
+extension WeatherData {
+    init(summary: WeatherSummary) {
+        date = Date()
+        weatherCode = summary.weather.minutely[0].sky.code
+        weatherDescription = summary.weather.minutely[0].sky.name
+        temperature = Double(summary.weather.minutely[0].temperature.tc) ?? 0
+        maxTemperature = Double(summary.weather.minutely[0].temperature.tmax) ?? 0
+        minTemperature = Double(summary.weather.minutely[0].temperature.tmin) ?? 0
+    }
+}
+
+extension WeatherData: IdentifiableType {
+    var identity: Double {
+        return date?.timeIntervalSinceReferenceDate ?? 0
+    }
+=======
    let date: Date?
    let weatherCode: String
    let weatherDescription: String
@@ -48,4 +73,5 @@ extension WeatherData: IdentifiableType {
    var identity: Double {
       return date?.timeIntervalSinceReferenceDate ?? 0
    }
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

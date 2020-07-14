@@ -23,6 +23,17 @@
 import Foundation
 
 enum TransitionStyle {
+<<<<<<< HEAD
+    case root
+    case push
+    case modal
+}
+
+enum TransitionError: Error {
+    case navigationControllerMissing
+    case cannotPop
+    case unknown
+=======
    case root
    case push
    case modal
@@ -33,4 +44,5 @@ enum TransitionError: Error {
    case navigationControllerMissing
    case cannotPop
    case unknown
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

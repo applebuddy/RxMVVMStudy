@@ -23,6 +23,44 @@
 import UIKit
 
 class SummaryTableViewCell: UITableViewCell {
+<<<<<<< HEAD
+    static let identifier = "SummaryTableViewCell"
+
+    @IBOutlet var weatherImageView: UIImageView!
+
+    @IBOutlet var statusLabel: UILabel!
+
+    @IBOutlet var minMaxLabel: UILabel!
+
+    @IBOutlet var currentTemperatureLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        backgroundColor = UIColor.clear
+
+        statusLabel.textColor = UIColor.white
+        minMaxLabel.textColor = statusLabel.textColor
+        currentTemperatureLabel.textColor = statusLabel.textColor
+    }
+
+    func configure(from data: WeatherDataType, tempFormatter: NumberFormatter) {
+        weatherImageView.image = UIImage.from(code: data.weatherCode)
+        statusLabel.text = data.weatherDescription
+
+        let max = data.maxTemperature ?? 0.0
+        let min = data.minTemperature ?? 0.0
+
+        let maxStr = tempFormatter.string(for: max) ?? "-"
+        let minStr = tempFormatter.string(for: min) ?? "-"
+
+        minMaxLabel.text = "최대 \(maxStr)º 최소 \(minStr)º"
+
+        let currentStr = tempFormatter.string(for: data.temperature) ?? "-"
+
+        currentTemperatureLabel.text = "\(currentStr)º"
+    }
+=======
    static let identifier = "SummaryTableViewCell"
    
    @IBOutlet weak var weatherImageView: UIImageView!
@@ -59,4 +97,5 @@ class SummaryTableViewCell: UITableViewCell {
       
       currentTemperatureLabel.text = "\(currentStr)º"
    }
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

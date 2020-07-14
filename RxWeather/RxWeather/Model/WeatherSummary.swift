@@ -20,6 +20,40 @@
 //  THE SOFTWARE.
 //
 
+<<<<<<< HEAD
+// - WeatherSummary : 기본 적인 날씨 API 데이터 모델로서 사용됩니다.
+
+import Foundation
+
+struct WeatherSummary: Codable {
+    struct Weather: Codable {
+        struct Minutely: Codable {
+            struct Sky: Codable {
+                let code: String
+                let name: String
+            }
+
+            struct Temperature: Codable {
+                let tc: String
+                let tmax: String
+                let tmin: String
+            }
+
+            let sky: Sky
+            let temperature: Temperature
+        }
+
+        let minutely: [Minutely]
+    }
+
+    struct Result: Codable {
+        let code: Int
+        let message: String
+    }
+
+    let weather: Weather
+    let result: Result
+=======
 import Foundation
 
 struct WeatherSummary: Codable {
@@ -50,4 +84,5 @@ struct WeatherSummary: Codable {
    
    let weather: Weather
    let result: Result
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

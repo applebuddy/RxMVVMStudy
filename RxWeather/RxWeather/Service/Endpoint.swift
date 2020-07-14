@@ -20,14 +20,25 @@
 //  THE SOFTWARE.
 //
 
+<<<<<<< HEAD
+import CoreLocation
+import Foundation
+=======
 import Foundation
 import CoreLocation
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 
 let summaryEndpoint = "https://apis.openapi.sk.com/weather/current/minutely"
 let forecastEndpoint = "https://apis.openapi.sk.com/weather/forecast/3days"
 
 func composeUrlRequest(endpoint: String, from location: CLLocation) -> URLRequest {
+<<<<<<< HEAD
+    let urlStr = "\(endpoint)?version=1&lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appKey=\(apiKey)"
+    let url = URL(string: urlStr)!
+    return URLRequest(url: url)
+=======
    let urlStr = "\(endpoint)?version=1&lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appKey=\(apiKey)"
    let url = URL(string: urlStr)!
    return URLRequest(url: url)
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

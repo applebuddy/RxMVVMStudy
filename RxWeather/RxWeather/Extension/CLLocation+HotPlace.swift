@@ -20,6 +20,15 @@
 //  THE SOFTWARE.
 //
 
+<<<<<<< HEAD
+import CoreLocation
+import Foundation
+
+extension CLLocation {
+    static var gangnamStation: CLLocation {
+        return CLLocation(latitude: 37.498206, longitude: 127.02761)
+    }
+=======
 import Foundation
 import CoreLocation
 
@@ -27,4 +36,5 @@ extension CLLocation {
    static var gangnamStation: CLLocation {
       return CLLocation(latitude: 37.498206, longitude: 127.02761)
    }
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

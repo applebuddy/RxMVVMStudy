@@ -23,10 +23,19 @@
 import Foundation
 
 protocol WeatherDataType {
+<<<<<<< HEAD
+    var date: Date? { get }
+    var weatherCode: String { get }
+    var weatherDescription: String { get }
+    var temperature: Double { get }
+    var maxTemperature: Double? { get }
+    var minTemperature: Double? { get }
+=======
    var date: Date? { get }
    var weatherCode: String { get }
    var weatherDescription: String { get }
    var temperature: Double { get }
    var maxTemperature: Double? { get }
    var minTemperature: Double? { get }
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

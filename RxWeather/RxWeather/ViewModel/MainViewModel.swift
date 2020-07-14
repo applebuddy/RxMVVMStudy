@@ -21,14 +21,36 @@
 //
 
 import Foundation
+<<<<<<< HEAD
+import NSObject_Rx
+import RxCocoa
+import RxDataSources
+import RxSwift
+=======
 import RxSwift
 import RxCocoa
 import RxDataSources
 import NSObject_Rx
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 
 typealias SectionModel = AnimatableSectionModel<Int, WeatherData>
 
 class MainViewModel: HasDisposeBag {
+<<<<<<< HEAD
+    static let tempFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+
+        return formatter
+    }()
+
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "Ko_kr")
+        return formatter
+    }()
+=======
    static let tempFormatter: NumberFormatter = {
       let formatter = NumberFormatter()
       formatter.minimumFractionDigits = 0
@@ -44,4 +66,5 @@ class MainViewModel: HasDisposeBag {
    }()
    
    
+>>>>>>> 3e71cad83bc33e1403e23ab974cc2d2837f3574a
 }

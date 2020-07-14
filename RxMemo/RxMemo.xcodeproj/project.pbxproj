@@ -16,6 +16,7 @@
 		0758944D236C357400B59A28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0758944B236C357400B59A28 /* Main.storyboard */; };
 		0758944F236C357700B59A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0758944E236C357700B59A28 /* Assets.xcassets */; };
 		07589452236C357700B59A28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07589450236C357700B59A28 /* LaunchScreen.storyboard */; };
+		0768F0FA24BDCEEE008109FF /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0768F0F924BDCEEE008109FF /* CoreDataStorage.swift */; };
 		0797D6352376D8B800CFC3DC /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0797D6342376D8B800CFC3DC /* Memo.swift */; };
 		0797D6372376D9F400CFC3DC /* MemoStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0797D6362376D9F400CFC3DC /* MemoStorageType.swift */; };
 		0797D63C2376DAD200CFC3DC /* RxMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0797D63A2376DAD200CFC3DC /* RxMemo.xcdatamodeld */; };
@@ -43,6 +44,7 @@
 		0758944E236C357700B59A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07589451236C357700B59A28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07589453236C357700B59A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0768F0F924BDCEEE008109FF /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		0797D6342376D8B800CFC3DC /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		0797D6362376D9F400CFC3DC /* MemoStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStorageType.swift; sourceTree = "<group>"; };
 		0797D63B2376DAD200CFC3DC /* RxMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RxMemo.xcdatamodel; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				0797D63A2376DAD200CFC3DC /* RxMemo.xcdatamodeld */,
+				0768F0F924BDCEEE008109FF /* CoreDataStorage.swift */,
 			);
 			path = CoreDataStorage;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0797D63E2376DAF200CFC3DC /* MemoryStorage.swift in Sources */,
+				0768F0FA24BDCEEE008109FF /* CoreDataStorage.swift in Sources */,
 				0797D64A2376E68400CFC3DC /* MemoComposeViewModel.swift in Sources */,
 				071372DF23844ABA00A2AC86 /* SceneCoordinator.swift in Sources */,
 				071372DB238446E400A2AC86 /* Scene.swift in Sources */,
