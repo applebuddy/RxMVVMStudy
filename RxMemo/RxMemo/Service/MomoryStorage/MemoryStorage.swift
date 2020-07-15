@@ -15,21 +15,23 @@ import RxSwift
 /// * 배열을 변경한 다음, Subject에서 새로운 next 이벤트를 방출하는 패턴으로 구현되는 MemoryStorage
 // 10-11) MemoryStorage 수정
 class MemoryStorage: MemoStorageType {
-    // 배열은 Observable을 통해 외부로 공개됩니다.
+    // - 배열은 Observable을 통해 외부로 공개됩니다.
     // * 배열이 새롭게 업데이트 되면 새로운 next 이벤트를 방출해야 합니다. 이때 Observable만으로는 부족하다. 이를 위해 Subject를 사용한다.
     // -> 초기값이 존재하는 BehaviorSubject 로 구성한다.
 
     private lazy var sectionModel = MemoSectionModel(model: 0, items: list)
 
-    // BehaviorSubject, store
+    // - BehaviorSubject, store를 정의합니다.
     private lazy var store = BehaviorSubject<[MemoSectionModel]>(value: [sectionModel])
 
+    // * temporary memo data(mock data)
     private var list = [
         Memo(content: "Hello, RxSwift", insertDate: Date().addingTimeInterval(-10)),
         Memo(content: "Lorem Ipsum", insertDate: Date().addingTimeInterval(-20)),
     ]
 
     // 10-12) 수정
+    // - 외부에서는 아래 메서드를 통해 subject에 접근합니다.
     @discardableResult
     func createMemo(content: String) -> Observable<Memo> {
         // 메모 인스턴스를 생성하고,
@@ -51,32 +53,32 @@ class MemoryStorage: MemoStorageType {
     }
 
     func update(memo: Memo, content: String) -> Observable<Memo> {
-        // 업데이트 된 메모 인스턴스를 생성한다.
+        // 1) 업데이트 된 메모 인스턴스를 생성한다.
         let updatedMemo = Memo(original: memo, updatedContent: content)
 
-        // 원본 메모 인스턴스를 업데이트 된 것으로 갱신한다.
+        // 2) 배열에 저장된 원본 메모 인스턴스 접근해서 업데이트 된, 새로운 인스턴스로 갱신한다.
         if let index = sectionModel.items.firstIndex(where: { $0 == memo }) {
-            // 원본 메모 인덱스를 접근해서 제거 후 새로운 메모로 갱신한다.
             sectionModel.items.remove(at: index)
             sectionModel.items.insert(updatedMemo, at: index)
         }
 
-        // 새롭게 갱신 한 메모 상태로 BehaviorSubject는 새로운 Next이벤트를 방출한다.
+        // 3) 새롭게 갱신 한 메모 상태로 BehaviorSubject, store는 새로운 next이벤트(onNext)를 방출한다.
         store.onNext([sectionModel])
 
-        // 업데이트 된 메모를 방출하는 옵저바블을 방출한다 .
+        // 4) update 된 메모를 방출하는 Observable을 방출한다.
         return Observable.just(updatedMemo)
     }
 
     func delete(memo: Memo) -> Observable<Memo> {
-        // 인자값으로 받은 memo의 인덱스를 찾아 해당 메모를 삭제한다.
+        // 1) 인자값으로 받은 memo의 인덱스를 찾아 해당 메모를 삭제한다.
         if let index = sectionModel.items.firstIndex(where: { $0 == memo }) {
             sectionModel.items.remove(at: index)
         }
 
+        // 2) 새롭게 갱신한 메모 상태로 BehaviorSubject, store는 새로운 next 이벤트를 방출한다.
         store.onNext([sectionModel])
 
-        // 삭제된 메모를 방출하는 Observable을 반환한다.
+        // 3) 삭제된 메모를 방출하는 Observable을 반환한다.
         return Observable.just(memo)
     }
 }
