@@ -49,7 +49,7 @@ class MemoDetailViewModel: CommonViewModel {
     // 09-01
     func performUpdate(memo: Memo) -> Action<String, Void> {
         return Action { input in
-            // ~ 07
+            // 09-01) ~07m
             //            self.storage.update(memo: memo, content: input).map { _ in } // .map { _ in } 을 추가하면 Observable<Void> 형으로 반환할 수 있습니다.
 
             // 09-07) 메모가 편집되었을 때 메모 내용이 갱신 될 수 있도록 해줍니다.

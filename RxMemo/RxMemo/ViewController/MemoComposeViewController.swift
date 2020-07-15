@@ -48,6 +48,36 @@ class MemoComposeViewController: UIViewController, ViewModelBinableType {
             .withLatestFrom(contentTextView.rx.text.orEmpty) // withLatestFrom 연산자로 텍스트뷰의 텍스트를 방출할 수 있습니다.
             .bind(to: viewModel.saveAction.inputs) // 이어서 방출된 텍스트를 saveAction과 바인딩 하겠습니다.
             .disposed(by: rx.disposeBag)
+
+        // #12_01:26)
+        // - 키보드가 나타날 예정일 때마다 새로운 next이벤트를 방출하는 Observable을 리턴합니다.
+        let willShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+            .map { ($0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height ?? 0 }
+
+        let willHideObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+            .map { _ -> CGFloat in 0 }
+
+        // - 두개의 Observable이 전달되는 시점마다 하나의 Observable에서 next이벤트가 전달됩니다.
+        // - 모든 구독자가 Observable을 공유하도록 share()를 추가 설정합니다.
+        let keyboardObservable = Observable.merge(willShowObservable, willHideObservable).share()
+
+        // - keyboardObservable의 새로운 구독자를 추가하고, textView의 여백을 조절해보겠습니다.
+        keyboardObservable
+            .subscribe(onNext: { [weak self] height in
+                guard let strongSelf = self else { return }
+
+                var inset = strongSelf.contentTextView.contentInset
+                inset.bottom = height
+
+                var scrollInset = strongSelf.contentTextView.scrollIndicatorInsets
+                scrollInset.bottom = height
+
+                UIView.animate(withDuration: 0.3) {
+                    strongSelf.contentTextView.contentInset = inset
+                    strongSelf.contentTextView.scrollIndicatorInsets = scrollInset
+                }
+            })
+            .disposed(by: rx.disposeBag)
     }
 
     // 6-08) viewWillAppear가 호출될 때 contentTextView를 firstResponder로 설정하겠습니다.
