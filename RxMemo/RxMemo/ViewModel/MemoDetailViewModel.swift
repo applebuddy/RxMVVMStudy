@@ -14,7 +14,7 @@ import RxSwift
 /// 메모보기 화면에서 사용하는 뷰 모델
 class MemoDetailViewModel: CommonViewModel {
     // 07-06) 뷰 모델에 사용할 몇가지 속성을 추가하겠습니다.
-    let memo: Memo
+    var memo: Memo
 
     // MARK: formatter는 날자를 문자열로 바꿀때 사용합니다.
 
@@ -55,6 +55,8 @@ class MemoDetailViewModel: CommonViewModel {
             // 09-07) 메모가 편집되었을 때 메모 내용이 갱신 될 수 있도록 해줍니다.
             self.storage.update(memo: memo, content: input)
                 .subscribe(onNext: { updated in
+
+                    self.memo = updated
                     self.contents.onNext([
                         updated.content,
                         self.formatter.string(from: updated.insertDate),
