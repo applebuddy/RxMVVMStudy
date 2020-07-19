@@ -10,7 +10,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-class MemoDetailViewController: UIViewController, ViewModelBinableType {
+class MemoDetailViewController: UIViewController, ViewModelBindableType {
     // MARK: - Property
 
     // 07-01) commit(05:36)

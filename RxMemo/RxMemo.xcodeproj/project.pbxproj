@@ -103,6 +103,7 @@
 				07589445236C357400B59A28 /* AppDelegate.swift */,
 				07589447236C357400B59A28 /* SceneDelegate.swift */,
 				0758944E236C357700B59A28 /* Assets.xcassets */,
+				0768F0FB24C4774A008109FF /* SupportingFiles */,
 				07589453236C357700B59A28 /* Info.plist */,
 			);
 			path = RxMemo;
@@ -119,7 +120,6 @@
 		07589468236C9C5200B59A28 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0758944B236C357400B59A28 /* Main.storyboard */,
 				07589450236C357700B59A28 /* LaunchScreen.storyboard */,
 				0797D63F2376E52000CFC3DC /* MemoListViewController.swift */,
 				0797D6412376E54E00CFC3DC /* MemoDetailViewController.swift */,
@@ -159,6 +159,14 @@
 				071372DE23844ABA00A2AC86 /* SceneCoordinator.swift */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		0768F0FB24C4774A008109FF /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				0758944B236C357400B59A28 /* Main.storyboard */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		0797D6382376DA8B00CFC3DC /* MomoryStorage */ = {

@@ -9,7 +9,7 @@
 import Action
 import Foundation
 import RxCocoa
-import RxDataSources // 10) ~
+import RxDataSources
 import RxSwift
 
 typealias MemoSectionModel = AnimatableSectionModel<Int, Memo>

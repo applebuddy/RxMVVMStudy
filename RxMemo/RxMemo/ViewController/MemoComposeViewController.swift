@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-class MemoComposeViewController: UIViewController, ViewModelBinableType {
+class MemoComposeViewController: UIViewController, ViewModelBindableType {
     // MARK: - IB
 
     @IBOutlet var cancelButton: UIBarButtonItem!

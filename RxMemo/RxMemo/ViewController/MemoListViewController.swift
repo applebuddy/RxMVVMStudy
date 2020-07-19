@@ -19,7 +19,7 @@ import RxSwift
 import UIKit
 
 /// RxSwift에서는 RxCocoa이 추가한 Tap 속성을 구독하거나, Action 속성에 Action을 직접 할당하는 방식으로 진행합니다.
-class MemoListViewController: UIViewController, ViewModelBinableType {
+class MemoListViewController: UIViewController, ViewModelBindableType {
     // MARK: - IB
 
     @IBOutlet var addButton: UIBarButtonItem!
@@ -27,6 +27,7 @@ class MemoListViewController: UIViewController, ViewModelBinableType {
 
     // MARK: - Properties
 
+    // - MemoListViewModel의 ViewModel 선언
     var viewModel: MemoListViewModel!
 
     override func viewDidLoad() {
