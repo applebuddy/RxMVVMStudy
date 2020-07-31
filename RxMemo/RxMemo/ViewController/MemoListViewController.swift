@@ -16,7 +16,6 @@ import NSObject_Rx
 import RxCocoa
 import RxDataSources
 import RxSwift
-import UIKit
 
 /// RxSwift에서는 RxCocoa이 추가한 Tap 속성을 구독하거나, Action 속성에 Action을 직접 할당하는 방식으로 진행합니다.
 class MemoListViewController: UIViewController, ViewModelBindableType {
@@ -35,6 +34,7 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
     }
 
     // 5-07) bindViewModel 메서드에서 ViewModel과 View를 바인딩 하겠습니다.
+    /// ViewModel과 View를 Binding 한다.
     func bindViewModel() {
         // 5-08) 아래와 같이 설정하면 viewModel에 표시된 title이 navigationBarButtonItem에 표시 됩니다.
         viewModel.title
@@ -49,7 +49,6 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
         // - https://tech.olx.com/clean-architecture-and-mvvm-on-ios-c9d167d9f5b3
         // [웹사이트] Advanced iOS App Architecture
         // - https://store.raywenderlich.com/products/advanced-ios-app-architecture
-
         viewModel.memoList
             .bind(to: listTableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: rx.disposeBag)
