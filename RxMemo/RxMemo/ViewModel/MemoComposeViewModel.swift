@@ -7,27 +7,35 @@
 //
 
 import Action
-import Foundation
 import RxCocoa
 import RxSwift
 
-/// Rx-MVVM 패턴을 구현할 때에는 뷰모델을 뷰컨트롤러의 속성으로 추가한다.
+/// Rx-MVVM 패턴을 구현할 때에는 뷰모델(ViewModel)을 뷰컨트롤러(ViewController)의 속성으로 추가한다.
 /// -> 그 후 뷰 모델과 뷰를 binding 한다.
-/// 6-00) - 해당 모델은 ComposeScene에서 메모 편집 등을 할 때 공통적으로 사용합니다.
+/// 6-00) - 해당 모델은 ComposeScene에서 메모 추가 / 메모 편집 등을 할 때 공통적으로 사용합니다.
+/// - CommonViewModel 클래스를 상속받습니다.
 class MemoComposeViewModel: CommonViewModel {
+    /// 메모내용 컨텐츠
     private let content: String?
 
     var initialText: Driver<String?> {
         return Observable.just(content).asDriver(onErrorJustReturn: nil)
     }
 
+    /// Action을 저장하는 속성
     let saveAction: Action<String, Void>
     let cancelAction: CocoaAction
 
-    init(title: String, content: String? = nil, sceneCoordinator: SceneCoordinatorType, storage: MemoStorageType, saveAction: Action<String, Void>? = nil, cancelAction: CocoaAction? = nil) {
+    // MARK: - Initializer
+
+    init(title: String, content: String? = nil,
+         sceneCoordinator: SceneCoordinatorType,
+         storage: MemoStorageType,
+         saveAction: Action<String, Void>? = nil,
+         cancelAction: CocoaAction? = nil) {
         self.content = content
         self.saveAction = Action<String, Void> { input in
-            // 6-04) 액션이 전달되었다면 실제로 해당 액션을 실행합니다.
+            // 6-04) 액션이 전달되었다면 실제로 해당 액션을 실행하고 화면을 닫습니다.
             if let action = saveAction {
                 action.execute(input)
             }
@@ -36,8 +44,9 @@ class MemoComposeViewModel: CommonViewModel {
             return sceneCoordinator.close(animated: true).asObservable().map { _ in }
         }
 
-        // 6-04) cancelAction도 위와 같은 방법으로 래핑하겠습니다.
+        // 6-04) cancelAction도 saveAction과 같은 방법으로 래핑하겠습니다.
         self.cancelAction = CocoaAction {
+            // 액션이 전달되었다면, 해당 액션을 실행하고, 화면을 닫습니다.
             if let action = cancelAction {
                 action.execute()
             }
