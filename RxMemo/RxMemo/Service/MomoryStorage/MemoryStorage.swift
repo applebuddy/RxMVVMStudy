@@ -6,7 +6,6 @@
 //  Copyright © 2019 MinKyeongTae. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 
 //  * RxSwift를 사용할때는 reloadData가 아닌 데이터 배열의 갱신을 통해 구현을 할 예정이다.

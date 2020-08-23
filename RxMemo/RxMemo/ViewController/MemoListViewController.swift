@@ -58,13 +58,15 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
         addButton.rx.action = viewModel.makeCreateAction()
 
         // 07-14) RxCocoa는 선택이벤트 처리에 사용하는 다양한 멤버를 extension으로 제공합니다.
-        // zip 연산자로 두 멤버가 리턴하는 Observable을 병합하겠습니다.
+        // - zip 연산자로 두 멤버가 리턴하는 Observable을 병합하겠습니다.
+        // -> 선택 된 메모와 IndexPath가 튜플상태로 병합되어 방출
         Observable.zip(listTableView.rx.modelSelected(Memo.self),
                        listTableView.rx.itemSelected)
             .do(onNext: { [unowned self] _, indexPath in
+                // - 선택 된 셀을 다시 선택 해제상태로 복귀합니다.
                 self.listTableView.deselectRow(at: indexPath, animated: true)
             })
-            .map { $0.0 }
+            .map { $0.0 } // 선택 된 모델을 detailAction(선택 메모에 맞는 상세화면으로 이동)과 바인딩합니다.
             .bind(to: viewModel.detailAction.inputs)
             .disposed(by: rx.disposeBag)
 

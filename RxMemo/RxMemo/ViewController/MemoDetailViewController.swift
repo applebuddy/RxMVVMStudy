@@ -29,6 +29,8 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
 
     // 07-09) 먼저 네비게이션 타이틀을 바인딩 하겠습니다.
     func bindViewModel() {
+        
+        // * viewModel.title 타입 : Driver<String> 으로, drive를 통해 바인딩합니다.
         viewModel.title
             .drive(navigationItem.rx.title)
             .disposed(by: rx.disposeBag)
